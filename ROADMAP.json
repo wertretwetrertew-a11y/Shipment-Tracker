@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-10-13",
-  "current_focus": "Restore verified deployment path and confirm production version before feature work.",
+  "current_focus": "Blocked: reauthorize Vercel integration for the existing project, then deploy and verify source version 0.2.7.",
   "tasks": [
     {
       "id": "ST-001",
@@ -13,7 +13,7 @@
         "Access to the existing project/scope is confirmed",
         "No new project or production domain is created without user permission"
       ],
-      "next_action": "Resolve 403 authorization issue through the existing integration/account context."
+      "next_action": "User must reconnect/update the Vercel integration so it is authorized for the existing project/team; the current connection gets 403 for scope wertretwetrertew-4225."
     },
     {
       "id": "ST-002",
