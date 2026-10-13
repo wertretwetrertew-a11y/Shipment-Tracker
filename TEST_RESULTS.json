@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-13",
+  "runs": [
+    {
+      "id": "ST-TEST-20261013-001",
+      "date": "2026-10-13",
+      "target": "index.html source version 0.2.7",
+      "type": "source-inspection",
+      "status": "partial",
+      "checks": [
+        {
+          "name": "Known source blob SHA",
+          "status": "pass",
+          "details": "Known SHA f0b6246d02ece3fa4520647c74c19f4c58db3029."
+        },
+        {
+          "name": "Production deployment",
+          "status": "blocked",
+          "details": "Vercel API returned 403; live version is not confirmed."
+        },
+        {
+          "name": "Full browser smoke test for 0.2.7",
+          "status": "not_run",
+          "details": "No verified current browser run recorded."
+        }
+      ],
+      "next_action": "After restoring deployment access, deploy and test production, then run functional smoke tests."
+    }
+  ]
+}
