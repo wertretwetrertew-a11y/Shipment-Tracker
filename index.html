@@ -56,11 +56,11 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:900px;marg
 </section>
 <section id="settings" class="page">
 <h2 class="section" style="margin-top:0">Настройки и резервная копия</h2>
-<p class="sub">Измени правила под свои реальные условия. Параметры фонда действуют на все месяцы; оклад, норма часов и твоя доля премии сохраняются отдельно для каждого месяца.</p>
+<p class="sub">Измени правила под свои реальные условия. Месячная норма бригады и ставка премии применяются ко всем месяцам. Базовый оклад задаёт значение по умолчанию; в уже сохранённом месяце его можно отдельно изменить на вкладке «Зарплата».</p>
 <div class="card"><h3 class="section" style="margin-top:0">Параметры расчёта</h3>
 <div class="formgrid">
-<div class="field"><label for="teamNorm">Норма бригады, тонн</label><input id="teamNorm" type="number" min="0" step="0.001" value="75"></div>
-<div class="field"><label for="bonusRate">Премия за тонну сверх нормы, BYN</label><input id="bonusRate" type="number" min="0" step="0.01" value="85"></div>
+<div class="field"><label for="teamNorm">Месячная норма бригады, тонн</label><input id="teamNorm" type="number" min="0" step="0.001" value="75"></div>
+<div class="field"><label for="bonusRate">За каждую тонну сверх нормы, BYN</label><input id="bonusRate" type="number" min="0" step="0.01" value="85"></div>
 <div class="field"><label for="defaultBase">Базовый оклад по умолчанию, BYN</label><input id="defaultBase" type="number" min="0" step="0.01" value="1700"></div>
 <div class="field"><label for="defaultNormHours">Норма часов по умолчанию</label><input id="defaultNormHours" type="number" min="1" step="0.5" value="176"></div>
 <div class="field"><label for="defaultShare">Личная доля премии по умолчанию, %</label><input id="defaultShare" type="number" min="0" max="100" step="0.1" value="15"></div>
@@ -76,17 +76,17 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:900px;marg
 <p class="hint">Файл содержит историю отгрузок и расчёты. Автоматической облачной синхронизации пока нет.</p>
 </div>
 <div class="card" style="margin-top:12px"><h3 class="section" style="margin-top:0">О приложении</h3>
-<div class="split"><span>Текущая версия</span><strong>0.2.3</strong></div>
+<div class="split"><span>Текущая версия</span><strong id="appVersionSettings">0.2.4</strong></div>
 <div class="split" style="margin-top:10px"><span>Хранение</span><strong>На этом устройстве</strong></div>
 <p class="hint">Если очистить данные браузера, история может быть удалена. Регулярно создавай резервную копию.</p>
 </div>
 </section>
 <section id="history" class="page"><h2 class="section" style="margin-top:0">История по месяцам</h2><p class="sub">Все сохранённые месяцы. Нажми на месяц, чтобы открыть его данные.</p><div id="historyList" class="rows"></div><p class="hint">Данные хранятся в браузере на этом устройстве. Для синхронизации между устройствами понадобится облачное хранилище.</p></section>
-<div class="footer">Shipment Tracker · Версия 0.2.3 · Данные хранятся на устройстве</div>
+<div class="footer">Shipment Tracker · Версия <span id="appVersionFooter">0.2.4</span> · Данные хранятся на устройстве</div>
 </main>
 <script>
 (()=>{'use strict';
-const KEY='shipment-tracker-v1';const $=id=>document.getElementById(id);
+const VERSION='0.2.4';const KEY='shipment-tracker-v1';const $=id=>document.getElementById(id);
 const fmt=(n,d=2)=>Number(n||0).toLocaleString('ru-RU',{minimumFractionDigits:d,maximumFractionDigits:d});
 const now=new Date();const ym=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
 const monthLabel=s=>{const [y,m]=s.split('-').map(Number);return new Date(y,m-1,1).toLocaleDateString('ru-RU',{month:'long',year:'numeric'}).replace(/^./,c=>c.toLocaleUpperCase())};
@@ -95,7 +95,7 @@ try{const saved=localStorage.getItem(KEY);if(saved)data=JSON.parse(saved);if(!da
 function bucket(m=selected){const st=data.settings||{};if(!data.months[m])data.months[m]={shipments:[],salary:{base:st.defaultBase??1700,normHours:st.defaultNormHours??176,workedHours:'',personalShare:st.defaultShare??15,actualPay:''}};const b=data.months[m];if(!Array.isArray(b.shipments))b.shipments=[];if(!b.salary)b.salary={base:st.defaultBase??1700,normHours:st.defaultNormHours??176,workedHours:'',personalShare:st.defaultShare??15,actualPay:''};if(b.salary.personalShare===undefined)b.salary.personalShare=st.defaultShare??15;if(b.salary.actualPay===undefined)b.salary.actualPay='';return b}
 function settings(){return data.settings||(data.settings={teamNorm:75,bonusRate:85,defaultBase:1700,defaultNormHours:176,defaultShare:15})}
 function fundFor(b){const tons=(b.shipments||[]).reduce((sum,x)=>sum+Number(x.kg||0),0)/1000;return Math.max(0,tons-Number(settings().teamNorm||0))*Number(settings().bonusRate||0)}
-function renderSettings(){const s=settings();['teamNorm','bonusRate','defaultBase','defaultNormHours','defaultShare'].forEach(id=>$(id).value=s[id]??({teamNorm:75,bonusRate:85,defaultBase:1700,defaultNormHours:176,defaultShare:15}[id]))}
+function renderSettings(){const s=settings();['teamNorm','bonusRate','defaultBase','defaultNormHours','defaultShare'].forEach(id=>$(id).value=s[id]??({teamNorm:75,bonusRate:85,defaultBase:1700,defaultNormHours:176,defaultShare:15}[id]));$('appVersionSettings').textContent=VERSION;$('appVersionFooter').textContent=VERSION}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));return true}catch(e){alert('Не удалось сохранить данные в браузере. Экспортируй резервную копию.');return false}}
 function renderMonthOptions(){const months=new Set([selected,...Object.keys(data.months)]);for(let i=-5;i<=5;i++){const d=new Date(now.getFullYear(),now.getMonth()+i,1);months.add(ym(d))}const sel=$('month');sel.innerHTML='';[...months].sort().reverse().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=monthLabel(m);sel.append(o)});sel.value=selected}
 function calc(){const b=bucket();const kg=b.shipments.reduce((s,x)=>s+Number(x.kg||0),0);const tons=kg/1000,norm=Math.max(0,Number(settings().teamNorm)||0),over=Math.max(0,tons-norm),remain=Math.max(0,norm-tons),fund=over*(Number(settings().bonusRate)||0);
