@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-13",
+  "entries": [
+    {
+      "version": "0.2.7",
+      "date": "2026-10-13",
+      "kind": "source-state",
+      "summary": "Latest known index.html source version. Production publication remains unconfirmed.",
+      "commit": "f0b6246d02ece3fa4520647c74c19f4c58db3029",
+      "files": [
+        "index.html"
+      ],
+      "checks": {
+        "source_sha_known": true,
+        "browser_smoke_test": "not confirmed for this version",
+        "production_deploy": "blocked/unconfirmed"
+      },
+      "notes": "Do not infer live version from the source version."
+    }
+  ]
+}
