@@ -13,7 +13,7 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:900px;marg
 .card form,.formgrid,.field{min-width:0}
 .field input,.field select{display:block;min-width:0;max-width:100%;width:100%}
 .field input[type="date"]{appearance:none;-webkit-appearance:none}
-@media(max-width:520px){.app{padding:14px 12px 105px}.top{align-items:center;flex-wrap:wrap;margin-bottom:16px}.month{max-width:none;width:100%}.brand h1{font-size:18px}.tabs{position:fixed;left:10px;right:10px;bottom:max(8px,env(safe-area-inset-bottom));z-index:10;backdrop-filter:blur(18px);background:#111925ed;box-shadow:0 10px 30px #0008;margin:0;grid-template-columns:repeat(4,minmax(0,1fr));padding:6px}.tab{font-size:11px;padding:7px 2px;min-width:0}.nav-icon{font-size:16px;line-height:1.1}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid .card:last-child{grid-column:1/-1}.card{padding:13px;border-radius:15px}.hero{padding:18px;border-radius:19px}.formgrid{gap:10px}#shipmentForm .formgrid{grid-template-columns:minmax(0,1fr)}.field input,.field select{padding:11px 10px}.metric{font-size:24px}.hero .metric{font-size:34px}}
+@media(max-width:520px){.app{padding:14px 12px 28px}.top{align-items:center;flex-wrap:wrap;margin-bottom:16px}.month{max-width:none;width:100%}.brand h1{font-size:18px}.tabs{position:sticky;top:5px;z-index:10;backdrop-filter:blur(18px);background:#111925ed;box-shadow:0 8px 20px #0004;margin:0 0 16px;grid-template-columns:repeat(4,minmax(0,1fr));padding:6px}.tab{font-size:11px;padding:7px 2px;min-width:0}.nav-icon{font-size:16px;line-height:1.1}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid .card:last-child{grid-column:1/-1}.card{padding:13px;border-radius:15px}.hero{padding:18px;border-radius:19px}.formgrid{gap:10px}#shipmentForm .formgrid{grid-template-columns:minmax(0,1fr)}.field input,.field select{padding:11px 10px}.metric{font-size:24px}.hero .metric{font-size:34px}}
 </style>
 </head>
 <body><main class="app">
@@ -70,7 +70,7 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:900px;marg
 </div>
 </section>
 <section id="history" class="page"><h2 class="section" style="margin-top:0">История по месяцам</h2><p class="sub">Все сохранённые месяцы. Нажми на месяц, чтобы открыть его данные.</p><div id="historyList" class="rows"></div><p class="hint">Данные хранятся в браузере на этом устройстве. Для синхронизации между устройствами понадобится облачное хранилище.</p></section>
-<div class="footer">Shipment Tracker · Версия 0.2.1 · Данные хранятся на устройстве</div>
+<div class="footer">Shipment Tracker · Версия 0.2.2 · Данные хранятся на устройстве</div>
 </main>
 <script>
 (()=>{'use strict';
