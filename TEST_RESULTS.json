@@ -26,6 +26,36 @@
         }
       ],
       "next_action": "After restoring deployment access, deploy and test production, then run functional smoke tests."
+    },
+    {
+      "id": "ST-TEST-20261013-002",
+      "date": "2026-10-13",
+      "target": "Deploy index.html source version 0.2.7 to existing Vercel project",
+      "type": "deployment-attempt",
+      "status": "blocked",
+      "checks": [
+        {
+          "name": "Source version",
+          "status": "pass",
+          "details": "Fetched from GitHub main; blob SHA f0b6246d02ece3fa4520647c74c19f4c58db3029; source contains version 0.2.7."
+        },
+        {
+          "name": "Existing Vercel project discovery",
+          "status": "partial",
+          "details": "Project shipment-tracker found as prj_lVJn0foN9huJAmwsVO8gbtt46rX4; teams listing empty."
+        },
+        {
+          "name": "Create deployment",
+          "status": "blocked",
+          "details": "403 Forbidden, Not authorized for scope wertretwetrertew-4225; request ID fra1:sfo1::g9fp5-1791915209185-64d8d00ff346."
+        },
+        {
+          "name": "Production URL current version",
+          "status": "not_run",
+          "details": "Unable to confirm because Vercel access/protection bypass is denied."
+        }
+      ],
+      "next_action": "User reconnects Vercel integration with access to existing project/team; then deploy and verify public production alias."
     }
   ]
 }
