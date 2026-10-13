@@ -27,7 +27,7 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:900px;marg
 <div class="card"><div class="metric-label">Сверх нормы</div><div class="metric" id="overTons">0,000</div><div class="unit">тонн сверх 75 т</div></div>
 </div>
 <div class="card" style="margin-top:12px"><div class="split"><strong>Прогресс к норме</strong><span id="progressText" class="pill">0%</span></div><div class="progress"><span id="progressBar" style="width:0%"></span></div><div class="split"><span class="unit">0 т</span><span class="unit">Цель: 75 т</span></div></div>
-<h2 class="section">Добавить отгрузку</h2><p class="sub">Вводи вес в килограммах. Записи можно исправить удалением и добавлением заново.</p>
+<h2 class="section">Добавить отгрузку</h2><p class="sub">Вводи вес в килограммах. Сохраняй запись и исправляй её через кнопку «Изменить».</p>
 <div class="card"><form id="shipmentForm"><div class="formgrid">
 <div class="field"><label for="date">Дата</label><input id="date" type="date" required></div>
 <div class="field"><label for="direction">Направление</label><select id="direction"><option>Ozon</option><option>WB</option><option>Другое</option></select></div>
@@ -48,16 +48,29 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:900px;marg
 <button id="saveSalary" class="btn">Сохранить расчёт месяца</button><div id="salaryStatus" class="hint" role="status"></div></div>
 </section>
 <section id="settings" class="page">
-<div class="grid">
-<div class="card"><div class="metric-label">Общий тоннаж</div><div class="metric" id="premiumTons">0,000</div><div class="unit">тонн</div></div>
-<div class="card"><div class="metric-label">Сверх нормы</div><div class="metric" id="premiumOver">0,000</div><div class="unit">тонн</div></div>
-<div class="card"><div class="metric-label">Общий фонд</div><div class="metric" id="fund">0,00</div><div class="unit">BYN на бригаду</div></div>
+<h2 class="section" style="margin-top:0">Настройки и резервная копия</h2>
+<p class="sub">Параметры расчёта сейчас фиксированные. Здесь можно сохранить или восстановить данные приложения.</p>
+<div class="card"><h3 class="section" style="margin-top:0">Параметры расчёта</h3>
+<div class="split"><span>Месячная норма бригады</span><strong>75 тонн</strong></div>
+<div class="split" style="margin-top:10px"><span>За каждую тонну сверх нормы</span><strong>85 BYN</strong></div>
+<div class="split" style="margin-top:10px"><span>Базовый оклад</span><strong>1 700 BYN</strong></div>
+<p class="hint">Фонд = max(0, тоннаж − 75) × 85 BYN. Это общий фонд бригады, а не личная премия. Оклад пропорционально уменьшается при недоработке часов; сверхурочные не увеличивают его.</p>
 </div>
-<div class="card" style="margin-top:12px"><h2 class="section" style="margin-top:0">Правило расчёта</h2><div class="split"><span>Норма в месяц</span><strong>75 тонн</strong></div><div class="split" style="margin-top:10px"><span>Ставка за каждую тонну сверх нормы</span><strong>85 BYN</strong></div><div class="result"><div class="metric-label">Формула фонда</div><div id="fundFormula" style="font-weight:800;margin-top:7px">max(0, 0 − 75) × 85 = 0 BYN</div></div><p class="hint warn">Это общий премиальный фонд бригады, а не твоя личная премия. Правило распределения между сотрудниками неизвестно, поэтому личную премию приложение не угадывает.</p></div>
-<div class="card" style="margin-top:12px"><h2 class="section" style="margin-top:0">Резервная копия</h2><p class="sub">Экспортируй данные перед очисткой браузера или переносом на другое устройство.</p><button id="export" class="btn secondary">↓ Экспортировать JSON</button><input id="importFile" class="hidden" type="file" accept="application/json"><button id="import" class="btn secondary">↑ Импортировать JSON</button><p class="hint">Автоматической облачной синхронизации пока нет. Файл JSON содержит историю отгрузок и расчёты.</p></div>
+<div class="card" style="margin-top:12px"><h3 class="section" style="margin-top:0">Резервная копия</h3>
+<p class="sub">Экспортируй данные перед очисткой браузера или переносом на другое устройство.</p>
+<button id="export" class="btn secondary">↓ Экспортировать JSON</button>
+<input id="importFile" class="hidden" type="file" accept="application/json">
+<button id="import" class="btn secondary">↑ Импортировать JSON</button>
+<p class="hint">Файл содержит историю отгрузок и расчёты. Автоматической облачной синхронизации пока нет.</p>
+</div>
+<div class="card" style="margin-top:12px"><h3 class="section" style="margin-top:0">О приложении</h3>
+<div class="split"><span>Текущая версия</span><strong>0.2.1</strong></div>
+<div class="split" style="margin-top:10px"><span>Хранение</span><strong>На этом устройстве</strong></div>
+<p class="hint">Если очистить данные браузера, история может быть удалена. Регулярно создавай резервную копию.</p>
+</div>
 </section>
 <section id="history" class="page"><h2 class="section" style="margin-top:0">История по месяцам</h2><p class="sub">Все сохранённые месяцы. Нажми на месяц, чтобы открыть его данные.</p><div id="historyList" class="rows"></div><p class="hint">Данные хранятся в браузере на этом устройстве. Для синхронизации между устройствами понадобится облачное хранилище.</p></section>
-<div class="footer">Shipment Tracker · Версия 0.2.0 · Данные хранятся на устройстве</div>
+<div class="footer">Shipment Tracker · Версия 0.2.1 · Данные хранятся на устройстве</div>
 </main>
 <script>
 (()=>{'use strict';
@@ -72,7 +85,7 @@ function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));return tru
 function renderMonthOptions(){const months=new Set([selected,...Object.keys(data.months)]);for(let i=-5;i<=5;i++){const d=new Date(now.getFullYear(),now.getMonth()+i,1);months.add(ym(d))}const sel=$('month');sel.innerHTML='';[...months].sort().reverse().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=monthLabel(m);sel.append(o)});sel.value=selected}
 function calc(){const b=bucket();const kg=b.shipments.reduce((s,x)=>s+Number(x.kg||0),0);const tons=kg/1000,over=Math.max(0,tons-75),remain=Math.max(0,75-tons),fund=over*85;
 $('totalTons').textContent=fmt(tons,3);$('remaining').textContent=fmt(remain,3);$('overTons').textContent=fmt(over,3);$('progressText').textContent=fmt(Math.min(100,tons/75*100),1)+'%';$('progressBar').style.width=Math.min(100,tons/75*100)+'%';
-$('premiumTons').textContent=fmt(tons,3);$('premiumOver').textContent=fmt(over,3);$('fund').textContent=fmt(fund);$('fundHome').textContent=fmt(fund)+' BYN';$('fundFormula').textContent='max(0, '+fmt(tons,3)+' − 75) × 85 = '+fmt(fund)+' BYN';
+$('fundHome').textContent=fmt(fund)+' BYN';
 const s=b.salary;$('base').value=s.base??1700;$('normHours').value=s.normHours??176;$('workedHours').value=s.workedHours??'';renderSalary(false);renderShipments();renderHistory()}
 function renderSalary(save){const b=bucket();const base=Math.max(0,Number($('base').value)||0),norm=Number($('normHours').value),hours=Number($('workedHours').value);b.salary={base,normHours:$('normHours').value,workedHours:$('workedHours').value};if(!Number.isFinite(norm)||norm<=0||$('workedHours').value===''||!Number.isFinite(hours)||hours<0){$('salaryValue').textContent='— BYN';$('salaryFormula').textContent='Введи отработанные часы и норму месяца';if(save)$('salaryStatus').textContent='Заполни корректную норму и фактические часы.';return null}const used=Math.min(hours,norm),salary=base*used/norm;$('salaryValue').textContent=fmt(salary)+' BYN';$('salaryFormula').textContent=fmt(base)+' × '+fmt(used,1)+' ÷ '+fmt(norm,1)+' = '+fmt(salary)+' BYN';if(save){persist();$('salaryStatus').textContent='Расчёт за '+monthLabel(selected)+' сохранён.'}return salary}
 function renderShipments(){const list=$('shipmentList');list.innerHTML='';const rows=[...bucket().shipments].sort((a,b)=>b.date.localeCompare(a.date));if(!rows.length){list.innerHTML='<div class="empty">Пока нет отгрузок за этот месяц.<br>Добавь первую запись выше.</div>';return}rows.forEach(x=>{const el=document.createElement('div');el.className='entry';const main=document.createElement('div');main.className='entry-main';const title=document.createElement('div');title.className='entry-title';title.textContent=x.direction+' · '+fmt(Number(x.kg),2)+' кг';const meta=document.createElement('div');meta.className='entry-meta';meta.textContent=x.date+(x.note?' · '+x.note:'');main.append(title,meta);const right=document.createElement('div');right.className='entry-actions';const val=document.createElement('div');val.className='entry-value';val.textContent=fmt(Number(x.kg)/1000,3)+' т';const edit=document.createElement('button');edit.className='btn secondary small';edit.textContent='Изменить';edit.setAttribute('aria-label','Изменить отгрузку');edit.onclick=()=>{editingId=x.id;$('date').value=x.date;$('direction').value=x.direction;$('weight').value=x.kg;$('note').value=x.note||'';$('shipmentSubmit').textContent='Сохранить изменения';$('shipmentCancel').classList.remove('hidden');$('shipmentForm').scrollIntoView({behavior:'smooth',block:'center'});$('weight').focus()};const del=document.createElement('button');del.className='btn danger';del.textContent='Удалить';del.setAttribute('aria-label','Удалить отгрузку');del.onclick=()=>{if(confirm('Удалить эту запись отгрузки?')){bucket().shipments=bucket().shipments.filter(y=>y.id!==x.id);if(editingId===x.id)resetShipmentForm();persist();calc()}};right.append(val,edit,del);el.append(main,right);list.append(el)})}
