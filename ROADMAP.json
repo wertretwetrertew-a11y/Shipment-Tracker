@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-13",
+  "current_focus": "Restore verified deployment path and confirm production version before feature work.",
+  "tasks": [
+    {
+      "id": "ST-001",
+      "title": "Restore Vercel access for existing project",
+      "priority": "P0",
+      "status": "blocked",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Access to the existing project/scope is confirmed",
+        "No new project or production domain is created without user permission"
+      ],
+      "next_action": "Resolve 403 authorization issue through the existing integration/account context."
+    },
+    {
+      "id": "ST-002",
+      "title": "Deploy and verify source version 0.2.7",
+      "priority": "P0",
+      "status": "pending",
+      "depends_on": [
+        "ST-001"
+      ],
+      "acceptance_criteria": [
+        "Deployment reports READY",
+        "Existing production alias points to the intended deployment",
+        "Public URL returns the app and version 0.2.7 is confirmed",
+        "Browser smoke test is completed and recorded"
+      ]
+    },
+    {
+      "id": "ST-003",
+      "title": "Validate JSON export/import",
+      "priority": "P1",
+      "status": "pending",
+      "depends_on": [
+        "ST-002"
+      ],
+      "acceptance_criteria": [
+        "Export backup works",
+        "Valid backup imports correctly",
+        "Malformed backup is rejected safely",
+        "Test data is removed"
+      ]
+    },
+    {
+      "id": "ST-004",
+      "title": "Validate mobile layout and accessibility",
+      "priority": "P1",
+      "status": "pending",
+      "depends_on": [
+        "ST-002"
+      ],
+      "acceptance_criteria": [
+        "Review widths 320–430 px",
+        "Verify sticky top navigation and iPhone safe areas",
+        "Record actual results"
+      ]
+    },
+    {
+      "id": "ST-005",
+      "title": "Add import data validation",
+      "priority": "P1",
+      "status": "pending",
+      "depends_on": [
+        "ST-002"
+      ],
+      "acceptance_criteria": [
+        "Validate months, shipment arrays, positive weights, and dates",
+        "Invalid JSON cannot corrupt existing data"
+      ]
+    }
+  ]
+}
