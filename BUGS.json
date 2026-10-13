@@ -11,12 +11,12 @@
       "first_recorded": "2026-10-13",
       "symptom": "Vercel API rejects deployment/listing requests with 403 Forbidden for scope wertretwetrertew-4225.",
       "expected": "Authorized access to the existing project so the current source can be deployed to the existing production alias.",
-      "actual": "Deployment of source version 0.2.7 is not confirmed; the last attempt returned 403.",
-      "root_cause": "Unknown; likely access/authorization scope, not yet verified.",
+      "actual": "2026-10-13: попытка создать deployment 0.2.7 в существующий project prj_lVJn0foN9huJAmwsVO8gbtt46rX4 вернула 403 Not authorized для scope wertretwetrertew-4225. Чтение deployment через protection bypass также вернуло 403. Публичная версия не подтверждена.",
+      "root_cause": "Достоверная причина пока не установлена; Vercel сообщает, что текущая интеграция/учётная запись не авторизована для указанного scope/project.",
       "workaround": "None confirmed for the current session. An earlier inline deployment of version 0.2.4 reached READY, but this does not verify current deployment.",
       "fix_commit": null,
       "verification": "Not resolved. Do not claim production is current.",
-      "next_action": "Restore authorization to the existing Vercel team/project or confirm another safe deployment path without creating a new project or changing the domain."
+      "next_action": "Пользователю нужно обновить/переподключить Vercel integration с доступом к существующему проекту и команде; затем повторить публикацию и проверить production URL."
     }
   ]
 }
