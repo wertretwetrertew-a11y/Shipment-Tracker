@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-13",
+  "bugs": [
+    {
+      "id": "ST-DEPLOY-001",
+      "title": "Vercel deployment access returns 403",
+      "status": "open",
+      "priority": "high",
+      "area": "deployment",
+      "first_recorded": "2026-10-13",
+      "symptom": "Vercel API rejects deployment/listing requests with 403 Forbidden for scope wertretwetrertew-4225.",
+      "expected": "Authorized access to the existing project so the current source can be deployed to the existing production alias.",
+      "actual": "Deployment of source version 0.2.7 is not confirmed; the last attempt returned 403.",
+      "root_cause": "Unknown; likely access/authorization scope, not yet verified.",
+      "workaround": "None confirmed for the current session. An earlier inline deployment of version 0.2.4 reached READY, but this does not verify current deployment.",
+      "fix_commit": null,
+      "verification": "Not resolved. Do not claim production is current.",
+      "next_action": "Restore authorization to the existing Vercel team/project or confirm another safe deployment path without creating a new project or changing the domain."
+    }
+  ]
+}
